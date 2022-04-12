@@ -23,15 +23,17 @@
                           nabídkou přímo pro Vás</p>
 
                       <label class="switch">
-                          <input name="mainCheckbox" id="mainCheckbox" type="checkbox">
+                          <input name="mainCheckbox" id="mainCheckbox" type="checkbox" v-model="mainCheckbox">
                           <span class="slider round"></span>
+                          
                       </label>
 
                       <label for="mainCheckbox" class="checkbox"> Podrobný formulář</label>
                   </div>
 
                   <div class="input-group detailed">
-                      <div id="firstDet">
+                      <div id="firstDet" v-if="mainCheckbox">                         
+                          <MyInput  v-for="mainInput in mainInputs" :id="mainInput.id" :placeholder="mainInput.placeholder" :key="mainInput.id"/>
                       </div>
                   </div>
 
@@ -49,11 +51,43 @@
 </template>
 
 <script>
+import MyInput from './sub_forms/MyInput.vue'
 export default {
-  name: 'TheForm',
-  components: {
-    
-  }
+    name: 'TheForm',
+    components: {
+        MyInput 
+    },
+    data() {
+        return {
+            mainCheckbox: false,
+            mainInputs: [
+                {
+                    id:"Jmeno",
+                    placeholder:" Jméno"
+                },
+                {
+                    id:"Prijmeni",
+                    placeholder:" Příjmení"
+                },
+                    {
+                    id:"Adresa_klienta",
+                    placeholder:" Adresa trvalého pobytu"
+                },
+                {
+                    id:"PSC",
+                    placeholder:" PSČ"
+                },
+                {
+                    id:"Adresa_objektu",
+                    placeholder:" Adresa řešeného objektu"
+                }
+            ],
+         
+        }
+    },
+    methods:{
+
+    }
 }
 </script>
 
