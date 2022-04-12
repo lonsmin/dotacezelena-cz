@@ -1,10 +1,11 @@
 <template>
-  <input type="text" :id="id" :placeholder="placeholder">
+  <input type="checkbox" :id="id" >
+  <label :for="id" :id="[id,'label']">{{placeholder}}</label>
 </template>
 
 <script>
 export default {
-  name:'MyInput',
+  name:'MyCheckbox',
     props:{        
         id:String,
         placeholder:String

@@ -19,7 +19,6 @@
             <h3>Získejte dotace na</h3>
         </div>
         <div class="row around-lg around-md around-sd around-xs" >
-            <!-- <BoxServices :title="boxes.title" :icon="boxes.icon" /> -->
             <BoxServices v-for="(box, i) in boxes" :title="box.title" :icon="box.icon" :key="'box'+i"/>
         </div>
     </div>  
@@ -31,10 +30,7 @@ import BoxServices from '@/components/BoxServices.vue'
 export default {
     name: 'TheHeader',
     components: {
-    BoxServices,
-    },
-    props: {
-        
+        BoxServices,
     },
     data() {
         return {
@@ -46,9 +42,7 @@ export default {
                 {title: 'FOTOVOLTAIKU',icon: 'fa-solar-panel'},
             ]
         }
-    },
-   
-    
+    }, 
 }
 </script>
 
