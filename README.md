@@ -1,24 +1,3 @@
-# dotacezelena-cz
+# Vue dotacezelena-cz
 
-## Project setup
-```
-npm install
-```
-
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+Je menší projekt na získávání kontaktních údajů od oslovených uživatelů. Po vyplnění udajů pošle přes nastavenou doménu e-mail s výpisem získaných údajů.
