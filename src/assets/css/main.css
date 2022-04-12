@@ -1,0 +1,30 @@
+@font-face {
+    font-family: 'LeagueGothicRegular';
+    src: url('../fonts/FontsFreeNetLeagueGothic_SemiCondensedRegular.eot');
+    src: url('../fonts/FontsFreeNetLeagueGothic_SemiCondensedRegular.eot') format('embedded-opentype'),
+         url('../fonts//FontsFreeNetLeagueGothic_SemiCondensedRegular.woff2') format('woff2'),
+         url('../fonts//FontsFreeNetLeagueGothic_SemiCondensedRegular.woff') format('woff'),
+         url('../fonts//FontsFreeNetLeagueGothic_SemiCondensedRegular.ttf') format('truetype'),
+         url('../fonts//FontsFreeNetLeagueGothic_SemiCondensedRegular.svg#FontsFreeNetLeagueGothic_SemiCondensedRegular') format('svg');
+        
+  }
+body{padding: 0;margin: 0;}
+h1{width: 100%;font-weight: 100;}
+h2 {font-weight: 100;}
+h3{font-size: 1.8rem;font-weight: 100;margin: 0.2rem;}
+h4{font-size: 1.3em;margin-top: 0;width: 100%;float: left;}
+h5{font-size: 1.5em; margin-bottom: 32px;}
+h6{font-size: 1.5em;margin:1rem 0;font-weight: 100;}
+
+.m0{margin: 0 !important;}
+.m1{margin-top: 2rem;}
+a{text-decoration: none; color: #FFF;}
+select,input[type="checkbox"], input[type="text"] {background-color: white !important;;}
+.ha {display: flex;justify-content: center;}
+.va {display: flex;align-items: center;}
+.w100 { width: 100%;}
+
+.header,section,.foot{ width: 100%;margin: 0px auto;}
+
+section{color: #6c757d;}
+section i {font-size: 10rem;line-height: 41px;}
