@@ -33,9 +33,48 @@
 
                   <div class="input-group detailed">
                       <div id="firstDet" v-if="mainCheckbox">
-                          <MyCheckbox v-for="service in services" :id="service.id" :placeholder="service.name" :key="service.id"/>                         
-                          <MyInput  v-for="mainInput in mainInputs" :id="mainInput.id" :placeholder="mainInput.placeholder" :key="mainInput.id"/>
-                      </div>
+                            <MyCheckbox 
+                                v-for="service in services" 
+                                v-model="service.value" 
+                                                        
+                                :id="service.id"
+                                :placeholder="service.name" 
+                                :key="service.id" 
+                                                       
+                            /> 
+                        
+                            <MyInput  
+                                v-for="mainInput in mainInputs" 
+                                :placeholder="mainInput.placeholder" 
+                                :key="mainInput.id"
+                            />
+
+                            <div v-for="service in services" :key="service.id" >
+                                <div v-if="service.value">
+                                    <h6 v-if="service.ext.length > 0">{{service.name}}</h6>
+                                    <div v-for="item in service.ext" :key="item.id">
+                                        <MyCheckbox 
+                                            v-if="item.type == 'checkbox'"
+                                            v-model="item.value"  
+                                            :id="item.id" 
+                                            :placeholder="item.name"
+                                        />
+                                        <MySelect 
+                                            v-if="item.type == 'select'" 
+                                            :id="item.id" v-model="item.value" 
+                                            :options="item.options" 
+                                            :value="item.options[0]"
+                                        />
+                                        <MyInput 
+                                            v-if="item.type == 'input'"
+                                            v-model="item.value" 
+                                            :id="item.id" 
+                                            :placeholder="item.placeholder"
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+                      </div>  
                   </div>
 
                   <hr>
@@ -54,14 +93,17 @@
 <script>
 import MyInput from './sub_forms/MyInput.vue'
 import MyCheckbox from './sub_forms/MyCheckbox.vue'
+import MySelect from './sub_forms/MySelect.vue'
 export default {
     name: 'TheForm',
     components: {
         MyInput,
-        MyCheckbox
+        MyCheckbox,
+        MySelect
     },
     data() {
         return {
+            selectedServices:[],
             mainCheckbox: false,
             mainInputs: [
                 {
@@ -89,40 +131,149 @@ export default {
                 {
                     id:"Novostavba",
                     name:"Novostavba rodinného domu",
-                    value:"Ne"
+                    value: false,
+                    ext: [
+                        {
+                            id:"Stavebni_dokumentace_novostavba",
+                            name:"Kompletní stavební dokumentaci",
+                            type: "checkbox",
+                            value: false
+                        },
+                        {
+                            id:"Projekt_vytapeni_novostavba",
+                            name:"Projekt vytápění",
+                            type: "checkbox",
+                            value: false
+                        },
+                        {
+                            id:"Projekt_vzduchotechniky_novostavba",
+                            name:"Projekt vzduchotechniky",
+                            type: "checkbox",
+                            value: false
+                        },
+                        {
+                            id:"Projekt_fotovoltaiky_novostavba",
+                            name:"Projekt fotovoltaiky",
+                            type: "checkbox",
+                            value: false
+                        }
+                    ]
                 },
                 {
                     id:"Rekonstrukce",
                     name:"Rekonstrukce rodinného domu",
-                    value:"Ne"
+                    value: false,
+                    ext: [
+                        {
+                            id: "Stavebni_dokumentace_rekonstrukce",
+                            name: "Kompletní stavební dokumentaci",
+                            type: "checkbox",
+                            value: false
+                        },
+                        {
+                            id: "Projekt_vytapeni_rekonstrukce",
+                            name: "Projekt vytápění",
+                            type: "checkbox",
+                            value: false
+                        },
+                        {
+                            id: "Projekt_vzduchotechniky_rekonstrukce",
+                            name: "Projekt vzduchotechniky",
+                            type: "checkbox",
+                            value: false
+                        },
+                        {
+                            id: "Projekt_fotovoltaiky_rekonstrukce",
+                            name: "Projekt fotovoltaiky",
+                            type: "checkbox",
+                            value: false
+                        }
+                    ]                    
                 },
                 {
                     id:"Zdroj",
-                    name:"Výměnu zdroje tepla",
-                    value:"Ne"
+                    name:"Výměna zdroje tepla",
+                    value: false,
+                    ext: [
+                        {
+                            id: "Soucasny_zdroj",
+                            name: "Soucasny_zdroj",
+                            type: "input",
+                            placeholder: " Současný zdroj tepla"
+                        },
+                        {
+                            id: "Budouci_zdroj",
+                            name: "Budouci_zdroj",
+                            type: "input",
+                            placeholder: " Čím chci nahradit zdroj tepla"
+                        }
+                    ]                    
                 },
                 {
                     id:"Fotovoltaika",
                     name:"Instalace fotovoltaiky",
-                    value:"Ne"
+                    value: false,
+                    ext: [
+                        {
+                            id: "Plocha_strechy",
+                            name: "Plocha_strechy",
+                            type: "input",
+                            placeholder: " Odhadovaná plocha střechy pro osazení panelů"
+                        },                                               
+                        {
+                            id: "Ukladat_do",
+                            name: "Ukladat_do",
+                            type: "select",
+                            options:[
+                                "Ukládat do baterií", 
+                                "Ukládat do vody"
+                            ] 
+                        },
+                        
+                    ],                    
                 },
                 {
                     id:"Destovka",
                     name:"Dešťovka",
-                    value:"Ne"
+                    value: false,
+                    ext: [
+                        {
+                            id: "Objem_nadrze",
+                            name: "Objem_nadrze",
+                            type: "input",
+                            placeholder: " Odhadovaný objem nádrže"
+                        },
+                        {
+                            id: "Ucel_pouziti",
+                            name: "Ucel_pouziti",
+                            type: "input",
+                            placeholder: " Účel použií"
+                        }
+                    ] 
                 },
                 {
                     id:"Vzduchotechnika",
                     name:"Vzduchotechnika/rekuperace",
-                    value:"Ne"
+                    value: false,
+                    ext: []
                 },
                 {
                     id:"Elektromobilita",
                     name:"Elektromobilita",
-                    value:"Ne"
+                    value: false,
+                    ext: [
+                        {
+                            id: "pripojka",
+                            name: "pripojka",
+                            type: "select",
+                            options: [
+                                "Jedna přípojka", 
+                                "Dvě přípojky" 
+                            ]
+                        },                      
+                    ],                   
                 }
             ],
-         
         }
     },
     methods:{
