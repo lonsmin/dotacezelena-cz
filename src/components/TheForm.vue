@@ -279,7 +279,7 @@ export default {
     },
     methods:{
         async onSubmit(){
-            let dataToSend;
+            let dataToSend = {};
             // const res = await fetch('send.php',{
             //             method:'POST',
             //             headers:{
@@ -289,7 +289,6 @@ export default {
             //             body:JSON.stringify(dataToSend)
             //         })
             // const data = await res.json(); 
-            
             console.log(dataToSend)
     }
     }
