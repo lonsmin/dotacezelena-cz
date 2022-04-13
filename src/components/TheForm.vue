@@ -4,7 +4,7 @@
           <div class="form">
               <h5>Nechte si nezávazně ověřit na co máte nárok</h5>
               <p>Projdu s Vámi všechny podklady a zjistím co všechno můžete čerpat. Stačí mi zanechat jen:</p>
-              <form action="send.php" method="POST" id="zelena">
+              <form  @submit.prevent="onSubmit" action="send.php" method="POST" id="zelena">
 
                   <div class="input-group low">
                       <label for="num">+420</label>
@@ -61,13 +61,14 @@
                                         />
                                         <MySelect 
                                             v-if="item.type == 'select'" 
-                                            :id="item.id" v-model="item.value" 
+                                            :id="item.id" 
+                                            v-model="item.value" 
                                             :options="item.options" 
-                                            :value="item.options[0]"
+                                            
                                         />
                                         <MyInput 
                                             v-if="item.type == 'input'"
-                                            v-model="item.value" 
+                                            v-model="item.value"
                                             :id="item.id" 
                                             :placeholder="item.placeholder"
                                         />
@@ -277,7 +278,20 @@ export default {
         }
     },
     methods:{
-
+        async onSubmit(){
+            let dataToSend;
+            // const res = await fetch('send.php',{
+            //             method:'POST',
+            //             headers:{
+            //                 'Accept':'application/json, text/plain, */*',
+            //                 'Content-type':'application/json'
+            //             },
+            //             body:JSON.stringify(dataToSend)
+            //         })
+            // const data = await res.json(); 
+            
+            console.log(dataToSend)
+    }
     }
 }
 </script>
