@@ -1,0 +1,51 @@
+<template>
+  <footer>
+    <div class="foot container">
+        <div class="row m0">
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                <h6>Kontakty</h6>
+                <p>Michal Bajtalon</p><br>
+                <span><i class="fa-solid fa-square-phone"></i>605 846 134</span><br>
+                <span><i class="fa-solid fa-square-envelope"></i>Michal@DotaceZelena.cz</span>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 dark-bg ha">
+                <h6>Po celých čechách</h6>
+                <img src="@/assets/img/Michal_Bajtalon_fotka.png" alt="Michal Bajtalon" class="foto1">
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 dark-bg2 ha va">   
+                <img src="@/assets/img/mapa_cechy.png" alt="mapa Cechy" class="foto2"> 
+            </div>
+        </div>
+    </div>    
+    <div class="foot container">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 foot-ad">
+            <span class=" ha ">
+                2022 Marcel Lonsmín |&nbsp;<a target="_blank" href="https://www.Lonsmin.cz" rel="noopener noreferrer "> www.Lonsmin.cz</a>
+            </span>
+        </div>
+        
+    </div>
+  </footer>
+</template>
+
+<script>
+export default {
+  name: 'TheFooter',
+  components: {
+    
+  }
+}
+</script>
+
+<style>
+footer{background-color: #28a745;font-size: 1.5rem;}
+footer i:first-child{padding-top: 0;}
+footer i{padding: 1rem;}
+footer i:last-child{padding-top: 0rem; }
+.foot-ad{ font-size: 1rem; line-height: 1rem; padding: 1%;margin: 0;font-family: 'LeagueGothicRegular';background-color: #1c642c;}
+.foto1{position: absolute; bottom: 0;width: 70%;}
+
+.dark-bg{position: relative; height: 300px;}
+.dark-bg2{position: flex; }
+
+</style>
