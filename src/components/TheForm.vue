@@ -8,14 +8,25 @@
 
                   <div class="input-group low">
                       <label for="num">+420</label>
-                      <input type="text" name="num" id="num" placeholder=" Vaše telefonní číslo">
+                      <MyInput
+                        :id="primaryInputs[0].id"  
+                        :placeholder="primaryInputs[0].placeholder"
+                        v-model="primaryInputs[0].value"       
+                             
+                        />
+                        
                   </div>
 
                   <span class="ha va">nebo</span>
 
                   <div class="input-group low">
                       <label for="email">@</label>
-                      <input type="text" name="email" id="email" placeholder=" Vaší e-mailovou adresu">
+                      <MyInput
+                        
+                        :id="primaryInputs[1].id"  
+                        :placeholder="primaryInputs[1].placeholder"
+                        v-model="primaryInputs[1].value"       
+                            />
                   </div>
                   
                   <div class="input-group">
@@ -23,7 +34,7 @@
                           nabídkou přímo pro Vás</p>
 
                       <label class="switch">
-                          <input name="mainCheckbox" id="mainCheckbox" type="checkbox" v-model="mainCheckbox">
+                          <input name="mainCheckbox" id="mainCheckbox" type="checkbox" v-model="mainCheckbox" @click.once="getData()">
                           <span class="slider round"></span>
                           
                       </label>
@@ -44,7 +55,8 @@
                             /> 
                         
                             <MyInput  
-                                v-for="mainInput in mainInputs" 
+                                v-for="mainInput in mainInputs"
+                                v-model="mainInput.value" 
                                 :placeholder="mainInput.placeholder" 
                                 :key="mainInput.id"
                             />
@@ -95,6 +107,7 @@
 import MyInput from './sub_forms/MyInput.vue'
 import MyCheckbox from './sub_forms/MyCheckbox.vue'
 import MySelect from './sub_forms/MySelect.vue'
+
 export default {
     name: 'TheForm',
     components: {
@@ -103,195 +116,108 @@ export default {
         MySelect
     },
     data() {
-        return {
-            selectedServices:[],
+        return {     
+                   
+            primaryInputs: [
+                        {
+                            id: "num",
+                            name: "telefon",
+                            type: "input",                            
+                            placeholder: "Vaše telefonní číslo",      
+                        },
+                        {
+                            id: "email",
+                            name: "e-mail",
+                            type: "input",
+                            placeholder: "Vaší e-mailovou adresu",  
+                        }
+                    ],
             mainCheckbox: false,
-            mainInputs: [
-                {
-                    id:"Jmeno",
-                    placeholder:" Jméno"
-                },
-                {
-                    id:"Prijmeni",
-                    placeholder:" Příjmení"
-                },
-                    {
-                    id:"Adresa_klienta",
-                    placeholder:" Adresa trvalého pobytu"
-                },
-                {
-                    id:"PSC",
-                    placeholder:" PSČ"
-                },
-                {
-                    id:"Adresa_objektu",
-                    placeholder:" Adresa řešeného objektu"
-                }
-            ],
-            services:[
-                {
-                    id:"Novostavba",
-                    name:"Novostavba rodinného domu",
-                    value: false,
-                    ext: [
-                        {
-                            id:"Stavebni_dokumentace_novostavba",
-                            name:"Kompletní stavební dokumentaci",
-                            type: "checkbox",
-                            value: false
-                        },
-                        {
-                            id:"Projekt_vytapeni_novostavba",
-                            name:"Projekt vytápění",
-                            type: "checkbox",
-                            value: false
-                        },
-                        {
-                            id:"Projekt_vzduchotechniky_novostavba",
-                            name:"Projekt vzduchotechniky",
-                            type: "checkbox",
-                            value: false
-                        },
-                        {
-                            id:"Projekt_fotovoltaiky_novostavba",
-                            name:"Projekt fotovoltaiky",
-                            type: "checkbox",
-                            value: false
-                        }
-                    ]
-                },
-                {
-                    id:"Rekonstrukce",
-                    name:"Rekonstrukce rodinného domu",
-                    value: false,
-                    ext: [
-                        {
-                            id: "Stavebni_dokumentace_rekonstrukce",
-                            name: "Kompletní stavební dokumentaci",
-                            type: "checkbox",
-                            value: false
-                        },
-                        {
-                            id: "Projekt_vytapeni_rekonstrukce",
-                            name: "Projekt vytápění",
-                            type: "checkbox",
-                            value: false
-                        },
-                        {
-                            id: "Projekt_vzduchotechniky_rekonstrukce",
-                            name: "Projekt vzduchotechniky",
-                            type: "checkbox",
-                            value: false
-                        },
-                        {
-                            id: "Projekt_fotovoltaiky_rekonstrukce",
-                            name: "Projekt fotovoltaiky",
-                            type: "checkbox",
-                            value: false
-                        }
-                    ]                    
-                },
-                {
-                    id:"Zdroj",
-                    name:"Výměna zdroje tepla",
-                    value: false,
-                    ext: [
-                        {
-                            id: "Soucasny_zdroj",
-                            name: "Soucasny_zdroj",
-                            type: "input",
-                            placeholder: " Současný zdroj tepla"
-                        },
-                        {
-                            id: "Budouci_zdroj",
-                            name: "Budouci_zdroj",
-                            type: "input",
-                            placeholder: " Čím chci nahradit zdroj tepla"
-                        }
-                    ]                    
-                },
-                {
-                    id:"Fotovoltaika",
-                    name:"Instalace fotovoltaiky",
-                    value: false,
-                    ext: [
-                        {
-                            id: "Plocha_strechy",
-                            name: "Plocha_strechy",
-                            type: "input",
-                            placeholder: " Odhadovaná plocha střechy pro osazení panelů"
-                        },                                               
-                        {
-                            id: "Ukladat_do",
-                            name: "Ukladat_do",
-                            type: "select",
-                            options:[
-                                "Ukládat do baterií", 
-                                "Ukládat do vody"
-                            ] 
-                        },
-                        
-                    ],                    
-                },
-                {
-                    id:"Destovka",
-                    name:"Dešťovka",
-                    value: false,
-                    ext: [
-                        {
-                            id: "Objem_nadrze",
-                            name: "Objem_nadrze",
-                            type: "input",
-                            placeholder: " Odhadovaný objem nádrže"
-                        },
-                        {
-                            id: "Ucel_pouziti",
-                            name: "Ucel_pouziti",
-                            type: "input",
-                            placeholder: " Účel použií"
-                        }
-                    ] 
-                },
-                {
-                    id:"Vzduchotechnika",
-                    name:"Vzduchotechnika/rekuperace",
-                    value: false,
-                    ext: []
-                },
-                {
-                    id:"Elektromobilita",
-                    name:"Elektromobilita",
-                    value: false,
-                    ext: [
-                        {
-                            id: "pripojka",
-                            name: "pripojka",
-                            type: "select",
-                            options: [
-                                "Jedna přípojka", 
-                                "Dvě přípojky" 
-                            ]
-                        },                      
-                    ],                   
-                }
-            ],
+            mainInputs: [],
+            services: [],
         }
     },
     methods:{
+        async getData(){
+            //console.log('z funkce getData')
+            try {
+                const res = await fetch('http://localhost:8080/json/params.json')
+                
+                if(!res.ok){
+                    throw Error('Není dostupný soubor')
+                }
+                const data = await res.json();
+                console.log(data) 
+                
+                this.mainInputs = data.mainInputs;
+                this.services = data.services;
+                
+            } catch (error) {
+                console.log('Něco se pokazilo: '+error)
+            }
+        },
         async onSubmit(){
-            let dataToSend = {};
+            let dataToSend = [];
+
+                
+                dataToSend = dataToSend
+                    .concat(this.primaryInputs
+                        .filter((primaryInput) => primaryInput.value)
+                        .map(primaryInput => ({ 
+                            value: primaryInput.value, 
+                            name: primaryInput.name, 
+                            })
+                        )
+                    );
+            
+            for (const key in this.mainInputs) {
+                if (this.mainInputs[key].value) {
+                    dataToSend.push({value: this.mainInputs[key].value, name:  this.mainInputs[key].placeholder})  
+                }
+            }
+
+            dataToSend = dataToSend
+                .concat(this.services
+                    .filter(service => service.value)
+                    .flatMap(service => [{value: service.value, name:  service.name }]
+                        .concat(service.ext
+                            .map(item => ({value: item.value, name:  item.name, id: service.id }))
+                        )
+                    )
+                );
+            //
+            //
+             
+            let params = new URLSearchParams();
+
+            for (let item of dataToSend) {
+                if (item.id) {
+                    params.set(`[${item.id}]: ${item.name}`, item.value);
+                } else {
+                    params.set(item.name, item.value);
+                }
+            }
+            console.log(Object.fromEntries(params))
             // const res = await fetch('send.php',{
             //             method:'POST',
             //             headers:{
             //                 'Accept':'application/json, text/plain, */*',
             //                 'Content-type':'application/json'
             //             },
-            //             body:JSON.stringify(dataToSend)
+            //             body:params
             //         })
-            // const data = await res.json(); 
-            console.log(dataToSend)
-    }
-    }
+            // const data = await res.text();
+            // if (data == "OK") {
+            //     alert('Děkujeme, vše proběhlo v pořádku.')
+            // }
+            // else if(data == "Error"){
+            //     alert("Vyplňte prosím alespoň email nebo telefonní číslo")
+            // }
+
+            //"Děkujeme, vše proběhlo v pořádku.";
+            //"Vyplňte prosím alespoň email nebo telefonní číslo";
+        }
+    },
 }
 </script>
 

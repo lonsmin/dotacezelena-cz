@@ -1,0 +1,170 @@
+{
+  "mainInputs": [
+    {
+      "id": "Jmeno",
+      "placeholder": " Jméno"
+    },
+    {
+      "id": "Prijmeni",
+      "placeholder": " Příjmení"
+    },
+    {
+      "id": "Adresa_klienta",
+      "placeholder": " Adresa trvalého pobytu"
+    },
+    {
+      "id": "PSC",
+      "placeholder": " PSČ"
+    },
+    {
+      "id": "Adresa_objektu",
+      "placeholder": " Adresa řešeného objektu"
+    }
+  ],
+  "services": [
+    {
+      "id": "Novostavba",
+      "name": "Novostavba rodinného domu",
+      "value": false,
+      "ext": [
+        {
+          "id": "Stavebni_dokumentace_novostavba",
+          "name": "Kompletní stavební dokumentaci",
+          "type": "checkbox",
+          "value": false
+        },
+        {
+          "id": "Projekt_vytapeni_novostavba",
+          "name": "Projekt vytápění",
+          "type": "checkbox",
+          "value": false
+        },
+        {
+          "id": "Projekt_vzduchotechniky_novostavba",
+          "name": "Projekt vzduchotechniky",
+          "type": "checkbox",
+          "value": false
+        },
+        {
+          "id": "Projekt_fotovoltaiky_novostavba",
+          "name": "Projekt fotovoltaiky",
+          "type": "checkbox",
+          "value": false
+        }
+      ]
+    },
+    {
+      "id": "Rekonstrukce",
+      "name": "Rekonstrukce rodinného domu",
+      "value": false,
+      "ext": [
+        {
+          "id": "Stavebni_dokumentace_rekonstrukce",
+          "name": "Kompletní stavební dokumentaci",
+          "type": "checkbox",
+          "value": false
+        },
+        {
+          "id": "Projekt_vytapeni_rekonstrukce",
+          "name": "Projekt vytápění",
+          "type": "checkbox",
+          "value": false
+        },
+        {
+          "id": "Projekt_vzduchotechniky_rekonstrukce",
+          "name": "Projekt vzduchotechniky",
+          "type": "checkbox",
+          "value": false
+        },
+        {
+          "id": "Projekt_fotovoltaiky_rekonstrukce",
+          "name": "Projekt fotovoltaiky",
+          "type": "checkbox",
+          "value": false
+        }
+      ]
+    },
+    {
+      "id": "Zdroj",
+      "name": "Výměna zdroje tepla",
+      "value": false,
+      "ext": [
+        {
+          "id": "Soucasny_zdroj",
+          "name": "Soucasny_zdroj",
+          "type": "input",
+          "placeholder": " Současný zdroj tepla"
+        },
+        {
+          "id": "Budouci_zdroj",
+          "name": "Budouci_zdroj",
+          "type": "input",
+          "placeholder": " Čím chci nahradit zdroj tepla"
+        }
+      ]
+    },
+    {
+      "id": "Fotovoltaika",
+      "name": "Instalace fotovoltaiky",
+      "value": false,
+      "ext": [
+        {
+          "id": "Plocha_strechy",
+          "name": "Plocha_strechy",
+          "type": "input",
+          "placeholder": " Odhadovaná plocha střechy pro osazení panelů"
+        },
+        {
+          "id": "Ukladat_do",
+          "name": "Ukladat_do",
+          "type": "select",
+          "options": [
+            "Ukládat do baterií",
+            "Ukládat do vody"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "Destovka",
+      "name": "Dešťovka",
+      "value": false,
+      "ext": [
+        {
+          "id": "Objem_nadrze",
+          "name": "Objem_nadrze",
+          "type": "input",
+          "placeholder": " Odhadovaný objem nádrže"
+        },
+        {
+          "id": "Ucel_pouziti",
+          "name": "Ucel_pouziti",
+          "type": "input",
+          "placeholder": " Účel použií"
+        }
+      ]
+    },
+    {
+      "id": "Vzduchotechnika",
+      "name": "Vzduchotechnika/rekuperace",
+      "value": false,
+      "ext": []
+    },
+    {
+      "id": "Elektromobilita",
+      "name": "Elektromobilita",
+      "value": false,
+      "ext": [
+        {
+          "id": "pripojka",
+          "name": "pripojka",
+          "type": "select",
+          "options": [
+            "Jedna přípojka",
+            "Dvě přípojky"
+          ]
+        }
+      ]
+    }
+  ]
+}
