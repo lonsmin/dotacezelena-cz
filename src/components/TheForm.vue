@@ -55,10 +55,10 @@
                             /> 
                         
                             <MyInput  
-                                v-for="mainInput in mainInputs"
-                                v-model="mainInput.value" 
-                                :placeholder="mainInput.placeholder" 
-                                :key="mainInput.id"
+                                v-for="personalInput in personalInputs"
+                                v-model="personalInput.value" 
+                                :placeholder="personalInput.placeholder" 
+                                :key="personalInput.id"
                             />
 
                             <div v-for="service in services" :key="service.id" >
@@ -91,7 +91,7 @@
                   </div>
 
                   <hr>
-                  <p id="error"></p>
+                  <p id="error">{{errorMessages.fromServer}}</p>
 
                   <div class="input-group">
                       <input type="submit" value="ODESLAT">
@@ -133,89 +133,96 @@ export default {
                         }
                     ],
             mainCheckbox: false,
-            mainInputs: [],
+            personalInputs: [],
             services: [],
+            errorMessages: {
+                fromServer: '',
+                other:'Něco se pokazilo',
+            }
         }
     },
     methods:{
-        async getData(){
-            //console.log('z funkce getData')
+
+        async getData(){           
             try {
-                const res = await fetch('http://localhost:8080/json/params.json')
-                
+                const res = await fetch('json/params.json')
                 if(!res.ok){
                     throw Error('Není dostupný soubor')
                 }
                 const data = await res.json();
-                console.log(data) 
-                
-                this.mainInputs = data.mainInputs;
-                this.services = data.services;
-                
+                this.personalInputs = data.personalInputs;
+                this.services = data.services;   
             } catch (error) {
                 console.log('Něco se pokazilo: '+error)
             }
         },
+
         async onSubmit(){
             let dataToSend = [];
 
-                
-                dataToSend = dataToSend
-                    .concat(this.primaryInputs
-                        .filter((primaryInput) => primaryInput.value)
-                        .map(primaryInput => ({ 
+            dataToSend = dataToSend
+                .concat(this.primaryInputs
+                    .filter((primaryInput) => primaryInput.value)
+                    .map(primaryInput => ({ 
                             value: primaryInput.value, 
                             name: primaryInput.name, 
-                            })
-                        )
-                    );
-            
-            for (const key in this.mainInputs) {
-                if (this.mainInputs[key].value) {
-                    dataToSend.push({value: this.mainInputs[key].value, name:  this.mainInputs[key].placeholder})  
-                }
-            }
-
-            dataToSend = dataToSend
-                .concat(this.services
-                    .filter(service => service.value)
-                    .flatMap(service => [{value: service.value, name:  service.name }]
-                        .concat(service.ext
-                            .map(item => ({value: item.value, name:  item.name, id: service.id }))
+                            }
                         )
                     )
                 );
-            //
-            //
-             
-            let params = new URLSearchParams();
+            if (this.personalInputs.length > 0 || this.services.length > 0) {
 
+                dataToSend = dataToSend
+                    .concat(this.personalInputs
+                        .filter(personalInput => personalInput.value)
+                        .map(personalInput => ({
+                            value: personalInput.value,
+                            name: personalInput.placeholder
+                                }
+                            )
+                        )
+                    );
+
+                dataToSend = dataToSend
+                    .concat(this.services
+                        .filter(service => service.value)
+                        .flatMap(service => [{value: service.value, name:  service.name }]
+                            .concat(service.ext
+                                .map(item => ({value: item.value, name:  item.name, id: service.id }))
+                            )
+                        )
+                    );
+
+            } 
+
+            let params = new URLSearchParams();
             for (let item of dataToSend) {
                 if (item.id) {
-                    params.set(`[${item.id}]: ${item.name}`, item.value);
+                    params.set(`-${item.id}:${item.name}`, item.value);
                 } else {
+                        
                     params.set(item.name, item.value);
                 }
             }
+            
             console.log(Object.fromEntries(params))
-            // const res = await fetch('send.php',{
-            //             method:'POST',
-            //             headers:{
-            //                 'Accept':'application/json, text/plain, */*',
-            //                 'Content-type':'application/json'
-            //             },
-            //             body:params
-            //         })
-            // const data = await res.text();
-            // if (data == "OK") {
-            //     alert('Děkujeme, vše proběhlo v pořádku.')
-            // }
-            // else if(data == "Error"){
-            //     alert("Vyplňte prosím alespoň email nebo telefonní číslo")
-            // }
+            console.log(params.toString())
+            const res = await fetch('send.php',{
+                        method:'POST',
+                        body: params
+                        
+                    })
+            
+            const data = await res.text();
 
-            //"Děkujeme, vše proběhlo v pořádku.";
-            //"Vyplňte prosím alespoň email nebo telefonní číslo";
+
+            if (data == "OK") {
+                this.errorMessages.fromServer = 'Děkujeme, vše proběhlo v pořádku.';
+            }
+            else if(data == "Error"){
+                this.errorMessages.fromServer = 'Vyplňte prosím alespoň e-mail nebo telefonní číslo';
+            }
+
         }
     },
 }

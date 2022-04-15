@@ -1,4 +1,4 @@
-<template> 
+<template>
   <TheHeader/>
   <section class="container">
         <div class="row ">

@@ -18,31 +18,112 @@
         <div class="row center-lg center-md center-sm center-xs">
             <h3>Získejte dotace na</h3>
         </div>
+        <TheModal 
+            :body="modal.body" 
+            :title="modal.title"
+        />
         <div class="row around-lg around-md around-sd around-xs" >
-            <BoxServices v-for="(box, i) in boxes" :title="box.title" :icon="box.icon" :key="'box'+i"/>
+            <BoxServices 
+                v-for="(box, i) in boxes" 
+                :title="box.title" 
+                :icon="box.icon"
+                :body="box.body" 
+                :key="'box'+i"
+                @button-clicked="onButtonClicked"
+            />
         </div>
     </div>  
 </template>
 
 <script>
 import BoxServices from '@/components/BoxServices.vue'
+import TheModal from '@/components/TheModal.vue'
 
 export default {
     name: 'TheHeader',
     components: {
         BoxServices,
+        TheModal,
     },
     data() {
         return {
+            modal: {
+                title: '',
+                body: {
+                    desc:'',
+                    fund: '',
+                    price: '',
+                    purpose:''
+                }
+            },
             boxes:[
-                {title: 'NOVOSTAVBY',icon: 'fa-house'},
-                {title: 'REKONSTRUKCE',icon: 'fa-ruler'},
-                {title: 'VÝMĚNU ZDROJE',icon: 'fa-plug'},
-                {title: 'DEŠŤOVKU',icon: 'fa-droplet'},
-                {title: 'FOTOVOLTAIKU',icon: 'fa-solar-panel'},
+                {   
+                    title: 'novostavbu',
+                    icon: 'fa-house',
+                    body:{
+                        desc:'Tato dotace by měla pokrýt část nákladů na výstavbu rodinného nebo bytového domu.',
+                        fund: 'Lze získat až 500 000 Kč',
+                        price: '45 000 – 60 000 Kč, ALE z čehož lze získat zpět částku 35 000 Kč v rámci příspěvku na vypracování dotace.',
+                        purpose: 'Výstavba nebo koupě rodinného domu'
+                    }
+                },
+                {
+                    title: 'rekonstrukci',
+                    icon: 'fa-ruler',
+                    body:{
+                        desc:'Tato dotace by měla pokrýt část nákladů na rekonstrukci rodinného nebo bytového domu.',
+                        fund: 'Lze získat až 650 000 Kč.',
+                        price: '45 000 – 60 000 Kč, ALE z čehož lze získat zpět částku 25 000 Kč v rámci příspěvku na vypracování dotace.',
+                        purpose: 'Okna, dveře, Stěny, Podlahy, Stropy'
+                    }
+                },
+                {
+                    title: 'výměnu zdroje',
+                    icon: 'fa-plug',
+                    body:{
+                        desc:'Tato dotace by měla pokrývat náklady na výměnu starého zdroje za nový.',
+                        fund: 'Dle typu zdroje 30 000 – 200 000 Kč',
+                        price: 'Dle typu zdroje od 10 000 – 35 000 Kč, ALE lze získat příspěvek na vypracování v rámci dotace.',
+                        purpose: 'Výměna starého kotle na uhlí, dřevo, elektrického kotle nebo jiného zdroje na tuhá paliva za – tepelné čerpadlo, kotel na biomasu vyšší třídy, plynový kondenzační kotel atd.'
+                    }
+                },
+                {
+                    title: 'dešťovku',
+                    icon: 'fa-droplet',
+                    body:{
+                        desc:'Na pokrytí části nákladů systému pracujícího s dešťovou vodou.',
+                        fund: 'Lze získat až 105 000 Kč.',
+                        price: '15 000 - 35 000 Kč, ALE z čehož lze získat zpět částku 10 000 Kč v rámci příspěvku na vypracování dotace.',
+                        purpose: 'Systémy využívající dešťovou vodu na zalévání, splachování a využití šedé vody.'
+                    }
+                },
+                {
+                    title: 'fotovoltaiku',
+                    icon: 'fa-solar-panel',
+                    body:{
+                        desc:'Tato dotace by měla pokrývat náklady na instalaci fotovoltaického/fototermického systému.',
+                        fund: 'Lze získat až 200 000 Kč',
+                        price: 'Dle rozsahu instalace od 10 000 – 35 000 Kč, ALE lze získat příspěvek na vypracování v rámci dotace.',
+                        purpose: 'Fotovoltaické panely napojené do bojleru nebo baterií, na fototermické systémy na ohřev teplé vody'
+                    }
+                },
             ]
         }
-    }, 
+    },
+    methods:{
+        onButtonClicked(title){
+            this.modal.title = title ;
+
+            this.boxes.forEach(box => {
+                if (box.title == this.modal.title) {
+                    this.modal.body.desc = `${box.body.desc}`;
+                    this.modal.body.fund = `${box.body.fund}`;
+                    this.modal.body.price = `${box.body.price}`;
+                    this.modal.body.purpose = `${box.body.purpose}`;
+                }
+            });
+        },
+    },
 }
 </script>
 
