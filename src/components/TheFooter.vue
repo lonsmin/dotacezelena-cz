@@ -4,14 +4,15 @@
         <div class="row m0">
             <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                 <h6>Kontakty</h6>
-                <p style="margin:0">Ing. Michal Bajtalon<br>
+                <p style="margin:5px">Ing. Michal Bajtalon<br>
                      
-                </p><br>
+                </p>
                 
                 <span><i class="fa-solid fa-square-phone"></i>605 846 134</span><br>
                 <span><i class="fa-solid fa-square-envelope"></i>Michal@DotaceZelena.cz</span><br>
-                <span style="font-size: 0.7em;letter-spacing: 0.06em;margin:16px">IČO: 09480374 | Neplátce DPH</span><br>
-                <span style="font-size: 0.7em;letter-spacing: 0.06em;margin:16px">Plojharova 1890/11, 162 00, Praha&nbsp;6</span>
+               <a href="#"> <span><i class="fa-brands fa-facebook-square"></i>  Dotace zelena úsporám</span></a><br>
+                <span style="font-size: 0.7em;letter-spacing: 0.06em;margin:15px">IČO: 09480374 | Neplátce DPH</span><br>
+                <span style="font-size: 0.7em;letter-spacing: 0.06em;margin:15px">Plojharova 1890/11, 162 00, Praha&nbsp;6</span>
             </div>
             <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 dark-bg ha">
                 <h6>Po celých čechách</h6>
@@ -45,7 +46,7 @@ export default {
 <style>
 footer{background-color: #28a745;font-size: 1.5rem;}
 footer i:first-child{padding-top: 0;}
-footer i{padding: 1rem;}
+footer i{padding: 0.7rem;}
 footer i:last-child{padding-top: 0rem; }
 .foot-ad{ font-size: 1rem; line-height: 1rem; padding: 1%;margin: 0;font-family: 'LeagueGothicRegular';background-color: #1c642c;}
 .foto1{position: absolute; bottom: 0;width: 70%;}

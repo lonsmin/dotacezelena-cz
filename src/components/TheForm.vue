@@ -1,7 +1,7 @@
 <template>
-  <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 ha m1">
+  <div id="form" class="col-lg-6 col-md-6 col-sm-12 col-xs-12 ha m1">
       <div class="row">
-          <div class="form">
+          <div class="form"  >
               <h5>Nechte si nezávazně ověřit na co máte nárok</h5>
               <p>Projdu s Vámi všechny podklady a zjistím co všechno můžete čerpat. Stačí mi zanechat jen:</p>
               <form  @submit.prevent="onSubmit" action="send.php" method="POST" id="zelena">
@@ -94,7 +94,7 @@
                   <p id="error">{{errorMessages.fromServer}}</p>
 
                   <div class="input-group">
-                      <input type="submit" value="ODESLAT">
+                      <input type="submit" value="ODESLAT DOTAZ">
                   </div>
 
               </form>
