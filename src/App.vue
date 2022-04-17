@@ -22,7 +22,7 @@ export default {
     TheForm,
     TheCalc,
     TheFooter,
-  }
+  },
 }
 </script>
 
@@ -41,5 +41,12 @@ export default {
   background-image: url("./assets/img/bcg-img.jpg");
   background-position: top center;
 }
+@media only screen and (max-width: 47.5em) { /* 760 px default 16 px */
 
+    .header{text-align: center;}
+    .header .icon{color: #fff;}
+    body{background-image: none;}
+    h3{margin-top: 5rem;margin-top: 2rem;}
+
+} 
 </style>
