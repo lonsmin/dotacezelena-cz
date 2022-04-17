@@ -1,11 +1,11 @@
 <template>
     
-        <a href="#openModal" class="col-lg-2 col-md-3 col-sm-12 col-xs-12 icon"  @click="onClick">
+        <div  class="col-lg-2 col-md-3 col-sm-12 col-xs-12 icon"  @click="onClick">
             
             <i :class="[icon,'fa-solid']"></i>
             <span>{{title}}</span>
             
-        </a>
+        </div>
     
 
 </template>
@@ -33,5 +33,5 @@ export default {
 </script>
 
 <style>
-.icon a{width: 270px;height: 270px;}
+.icon {width: 270px;height: 270px;cursor: pointer;}
 </style>

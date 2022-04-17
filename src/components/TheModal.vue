@@ -1,8 +1,9 @@
 <template>
-  <div id="openModal" class="modalDialog">
-      <div>
-         <a href="#close" title="Close" class="close">X</a>
-         <h1>Dotace na {{title}}</h1>
+  <!-- -->
+  <div class="modal-wrapper">
+    <div class="modal-body">
+         <a title="Close" class="close" @click="$emit('someEvent')">X</a>
+         <h1>{{title}}</h1>
          
             <h2>Na co by měla sloužit? </h2>
             <div class="row">
@@ -51,11 +52,14 @@
                
          <hr>
          <div class="btn-cont"  style="display:flex; flex-direction: row-reverse;">
-            <a href="#close"><div class="btn" style="color:white;" @click="scrollTo()">OVĚŘIT NÁROK</div></a>
+            <div class="btn" style="color:white;" @click="scrollTo()">OVĚŘIT NÁROK</div>
          </div>
          
-      </div>
+      
+   <!-- -->
    </div>
+   </div>
+
 </template>
 
 <script>
@@ -74,7 +78,9 @@ export default {
             let element = document.getElementById('form')
             element.scrollIntoView({behavior: 'smooth'});
             }     
-        }
+        },
+        
+    
 
 }
 </script>
@@ -88,44 +94,15 @@ export default {
     letter-spacing: 0.001rem;
    
 }
-h1{margin-top: 0;font-size: 2.5em;}
+h1{margin-top: 0;font-size: 2.5em; text-transform: uppercase;}
 h2{margin: 0;font-family: 'Franklin Gothic Medium','Arial Narrow', Arial, sans-serif;font-weight: 600;padding: 0.2 1.4em;}
 
 p, ul, li{font-family: 'Franklin Gothic Medium','Arial Narrow', Arial, sans-serif;font-weight: 400;}
-.modalDialog {
-    position: fixed;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    background: rgba(0, 0, 0, 0.8);
-    z-index: 99999;
-    opacity:0;
-    -webkit-transition: opacity 100ms ease-in;
-    -moz-transition: opacity 100ms ease-in;
-    transition: opacity 100ms ease-in;
-    pointer-events: none;
-}
-.modalDialog:target {
-    opacity:1;
-    pointer-events: auto;
-}
-.modalDialog > div {
-    max-width: 600px;
-    width: 90%;
-    position: relative;
-    margin: 7% auto;
-    padding: 2em;
-    border-radius: 3px;
-    -webkit-border-radius: 3px;
-    -moz-border-radius: 3px;
-    border-radius: 3px;
-    background: #fff;
-    max-height: calc(100vh - 120px);
-    overflow-y: auto;
-    
-
-}
+@media only screen and (max-width: 47.5em) {ul {list-style-type: none;padding-left: 0;} p{display: flex; justify-content:center}}
+.modal-body{box-shadow: 1px 1px 8px #888888;background-color: rgb(250, 250, 250);padding: 3% 5% 0.7% 5%;max-width: 900px; position: relative;    -webkit-border-radius: 3px;-moz-border-radius: 3px;border-radius: 3px;}
+.modal-wrapper{display: flex;
+  
+  justify-content: center;}
 .close {
     font-family: Arial, Helvetica, sans-serif;
     background: #227a35;
@@ -143,18 +120,12 @@ p, ul, li{font-family: 'Franklin Gothic Medium','Arial Narrow', Arial, sans-seri
     -moz-border-radius: 3px;
     border-radius: 3px;
     padding-top: 5px;
+    cursor: pointer;
 }
 .close:hover {
     background: #1c642c;
 }
 /*oprava divného zobrazení*/
 i{font-size: 3em;margin: 0.1em;}
-@media only screen and (max-width: 761px) {
-    i{display: none;}
-}
-@media only screen and (max-width: 759px) {
-    i{display: block;margin: 0.2em;}
-    p{display: flex;justify-content: center;}
-    .close{position: fixed;}
-}
+
 </style> 

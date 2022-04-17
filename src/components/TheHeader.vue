@@ -16,11 +16,14 @@
             </div>
         </div>
         <div class="row center-lg center-md center-sm center-xs">
-            <h3>Získejte dotace na</h3>
+            <h3 id="h3">Získejte dotace na</h3>
         </div>
         <TheModal 
+            v-if="modal.title"
             :body="modal.body" 
             :title="modal.title"
+            @some-event="this.modal.title = false"
+            
         />
         <div class="row around-lg around-md around-sd around-xs" >
             <BoxServices 
@@ -141,11 +144,16 @@ export default {
                     this.modal.body.purposes = box.body.purposes;
                 }
             });
+            let element = document.getElementById('h3')
+            element.scrollIntoView({behavior: 'smooth'});
         },
+        
+        onCloseClicked(){},
         scrollTo() {
             let element = document.getElementById('form')
             element.scrollIntoView({behavior: 'smooth'});
         }
+        
     },
 }
 </script>

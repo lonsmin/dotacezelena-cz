@@ -91,9 +91,11 @@
                   </div>
 
                   <hr>
-                  <p id="error">{{errorMessages.fromServer}}</p>
+                  <p id="error">{{errorMessages}}</p>
 
                   <div class="input-group">
+                      <input type="checkbox" id="gdpr" v-model="status.gdpr" class="gdpr"> <label for="gdpr">Souhlasím s <a href="/podminky_ochrany_osobnich_udaju.pdf" style="color:#0F0E41; text-decoration:underline">podminky_ochrany_osobnich_udaju.pdf</a></label><br><br>
+                      
                       <input type="submit" value="ODESLAT DOTAZ">
                   </div>
 
@@ -135,14 +137,11 @@ export default {
             mainCheckbox: false,
             personalInputs: [],
             services: [],
-            errorMessages: {
-                fromServer: '',
-                other:'Něco se pokazilo',
-            }
+            status: {gdpr: false},
+            errorMessages: '',
         }
     },
     methods:{
-
         async getData(){           
             try {
                 const res = await fetch('json/params.json')
@@ -153,7 +152,7 @@ export default {
                 this.personalInputs = data.personalInputs;
                 this.services = data.services;   
             } catch (error) {
-                console.log('Něco se pokazilo: '+error)
+                this.errorMessages = 'Něco se pokazilo:'+ error;
             }
         },
 
@@ -194,7 +193,11 @@ export default {
                     );
 
             } 
+            // params.push(params.set('gdpr',this.status.gdpr))
+            let gdpr = {value: this.status.gdpr, name: 'gdpr'}
+            dataToSend.push(gdpr)
 
+            console.log(dataToSend)
             let params = new URLSearchParams();
             for (let item of dataToSend) {
                 if (item.id) {
@@ -202,6 +205,7 @@ export default {
                 } else {
                         
                     params.set(item.name, item.value);
+                    
                 }
             }
             
@@ -214,13 +218,17 @@ export default {
                     })
             
             const data = await res.text();
+            
 
 
             if (data == "OK") {
-                this.errorMessages.fromServer = 'Děkujeme, vše proběhlo v pořádku.';
+                this.errorMessages = 'Děkujeme, vše proběhlo v pořádku.';
             }
-            else if(data == "Error"){
-                this.errorMessages.fromServer = 'Vyplňte prosím alespoň e-mail nebo telefonní číslo';
+            if(data == "GDPR"){
+                this.errorMessages = 'Zaškrtněte prosím souhlas, že jste seznámen/a s podmínkami ochrany osobních údajů před odesláním';
+            }
+            if(data == "Error"){
+                this.errorMessages = 'Vyplňte prosím alespoň e-mail nebo telefonní číslo';
             }
 
         }
@@ -229,6 +237,7 @@ export default {
 </script>
 
 <style>
+.gdpr {transform: scale(1.8); margin: 10px}
 .form{background-color: #F7F7F7;padding: 0rem 2rem 1rem 2rem;border: 1px solid #bbc2c3; }
 #error {text-align: right; color:#e67e22; font-size: bold;}
 .form input,.form select {padding: 0 0.5rem;}
