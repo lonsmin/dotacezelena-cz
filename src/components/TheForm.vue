@@ -1,4 +1,5 @@
 <template>
+
   <div id="form" class="col-lg-6 col-md-6 col-sm-12 col-xs-12 ha m1">
       <div class="row">
           <div class="form"  >
@@ -91,9 +92,11 @@
                   </div>
 
                   <hr>
-                  <p id="error">{{errorMessages.fromServer}}</p>
+                  <p id="error">{{errorMessages}}</p>
 
                   <div class="input-group">
+                      <input type="checkbox" id="gdpr" v-model="gdpr.data.value" class="gdpr"> <label for="gdpr">Souhlasím se <a :href="gdpr.link" target="_blank" style="color:#0F0E41; text-decoration:underline">Zasady_ochrany_osobnich_udaju.pdf</a></label><br><br>
+                      
                       <input type="submit" value="ODESLAT DOTAZ">
                   </div>
 
@@ -134,26 +137,26 @@ export default {
                     ],
             mainCheckbox: false,
             personalInputs: [],
-            services: [],
-            errorMessages: {
-                fromServer: '',
-                other:'Něco se pokazilo',
-            }
+            services: [],           
+            gdpr: {
+                data: {value: false, name: 'gdpr'},
+                link: '/Zasady_ochrany_osobnich_udaju.pdf'
+                },
+            errorMessages: '',
         }
     },
     methods:{
-
         async getData(){           
             try {
                 const res = await fetch('json/params.json')
                 if(!res.ok){
-                    throw Error('Není dostupný soubor')
+                    throw Error('Není dostupný soubor s parametry')
                 }
                 const data = await res.json();
                 this.personalInputs = data.personalInputs;
                 this.services = data.services;   
             } catch (error) {
-                console.log('Něco se pokazilo: '+error)
+                this.errorMessages = error;
             }
         },
 
@@ -194,7 +197,10 @@ export default {
                     );
 
             } 
+            
+            dataToSend.push(this.gdpr.data)
 
+            
             let params = new URLSearchParams();
             for (let item of dataToSend) {
                 if (item.id) {
@@ -202,33 +208,46 @@ export default {
                 } else {
                         
                     params.set(item.name, item.value);
+                    
                 }
             }
             
-            console.log(Object.fromEntries(params))
-            console.log(params.toString())
-            const res = await fetch('send.php',{
-                        method:'POST',
-                        body: params
-                        
-                    })
-            
-            const data = await res.text();
+            try {
+                const res = await fetch('send.php',{
+                            method:'POST',
+                            headers: {
+                                'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+                                },
+                            body: params
+                        })
+
+                if(!res.ok){
+                    throw Error('Zkontrolujte prosím Vaše připojení k internetu a zkuste to znovu')
+                }
+                
+                const data = await res.text();
+                
 
 
-            if (data == "OK") {
-                this.errorMessages.fromServer = 'Děkujeme, vše proběhlo v pořádku.';
+                if (data == "OK") {
+                    this.errorMessages = 'Děkujeme, vše proběhlo v pořádku.';
+                }
+                else if(data == "GDPR"){
+                    this.errorMessages = 'Zaškrtněte prosím políčko "Souhlasím se Zásady..."';
+                }
+                else if(data == "Error"){
+                    this.errorMessages = 'Vyplňte prosím alespoň e-mail nebo telefonní číslo';
+                }
+            } catch (error) {
+                this.errorMessages = error;
             }
-            else if(data == "Error"){
-                this.errorMessages.fromServer = 'Vyplňte prosím alespoň e-mail nebo telefonní číslo';
-            }
-
         }
     },
 }
 </script>
 
 <style>
+.gdpr {transform: scale(1.8); margin: 10px}
 .form{background-color: #F7F7F7;padding: 0rem 2rem 1rem 2rem;border: 1px solid #bbc2c3; }
 #error {text-align: right; color:#e67e22; font-size: bold;}
 .form input,.form select {padding: 0 0.5rem;}

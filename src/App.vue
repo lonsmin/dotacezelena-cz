@@ -1,6 +1,11 @@
 <template>
   <TheHeader/>
   <section class="container">
+    <div class="wrap-title">
+      <h3  class="row ha title">
+        Říkáte si "Jak na dotace?" Napište nám a my tuto otázku vyřešíme za Vás.
+      </h3>
+    </div>    
         <div class="row ">
           <TheCalc/>
           <TheForm/>
@@ -48,5 +53,12 @@ export default {
     body{background-image: none;}
     h3{margin-top: 5rem;margin-top: 2rem;}
 
-} 
+}
+.wrap-title{
+  padding:0 5%;
+  text-align: center;
+}
+.title{
+  padding-top: 6%;
+}
 </style>

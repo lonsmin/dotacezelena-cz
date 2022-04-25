@@ -43,6 +43,7 @@ section i {font-size: 10rem;line-height: 41px;}
   #firstDet{font-size: 0.7rem;}
   .detailed input[type='checkbox'] {height: 30px;}
   .detailed label {bottom: 10px;};
+  
 }
 @media only screen and (max-width: 62em) { /* 992 px default 16 px */
   .dark-bg2{padding: 4%;}

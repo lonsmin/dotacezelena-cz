@@ -10,12 +10,12 @@
                 
                 <span><i class="fa-solid fa-square-phone"></i>605 846 134</span><br>
                 <span><i class="fa-solid fa-square-envelope"></i>Michal@DotaceZelena.cz</span><br>
-               <a href="#"> <span><i class="fa-brands fa-facebook-square"></i>  Dotace zelena úsporám</span></a><br>
+               <a target="_blank" href="https://www.facebook.com/groups/5008057742615182"> <span><i class="fa-brands fa-facebook-square"></i>  Dotace zelena úsporám</span></a><br>
                 <span style="font-size: 0.7em;letter-spacing: 0.06em;margin:15px">IČO: 09480374 | Neplátce DPH</span><br>
                 <span style="font-size: 0.7em;letter-spacing: 0.06em;margin:15px">Plojharova 1890/11, 162 00, Praha&nbsp;6</span>
             </div>
             <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 dark-bg ha">
-                <h6>Po celých čechách</h6>
+                <h6>Po celých Čechách</h6>
                 <img src="@/assets/img/Michal_Bajtalon_fotka.png" alt="Michal Bajtalon" class="foto1">
             </div>
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 dark-bg2 ha va">   
@@ -53,5 +53,5 @@ footer i:last-child{padding-top: 0rem; }
 .sad{letter-spacing: 1;}
 .dark-bg{position: relative; height: 300px;}
 .dark-bg2{position: flex; }
-
+h6{text-transform: uppercase;}
 </style>
