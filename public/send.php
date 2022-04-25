@@ -1,9 +1,8 @@
 <?php
-$my_email = 'marcel@lonsmin.cz';
+$my_email = '';
 
-$header = "From: admin@lonsmin.cz\r\n"; 
+$header = "From: michal@dotacezelena.cz\r\n"; 
 $header.= "Reply-To: ".$_POST["e-mail"]."\r\n";
-// $header.= "CC: marcel@lonsmin.cz";
 $header.= "MIME-Version: 1.0\r\n"; 
 $header.= "Content-Type: text/html; charset=utf-8\r\n";
 

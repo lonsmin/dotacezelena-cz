@@ -1,10 +1,10 @@
 <template>
     
-        <div  class="col-lg-2 col-md-3 col-sm-12 col-xs-12 icon"  @click="onClick">
-            
-            <i :class="[icon,'fa-solid']"></i>
-            <span>{{title}}</span>
-            
+        <div  class="col-lg-1 col-md-2 col-sm-12 col-xs-12 icon"  @click="onClick">
+          
+            <i :class="[service.icon,'fa-solid']"></i>
+            <span>{{service.title}}</span>
+        
         </div>
     
 
@@ -14,18 +14,12 @@
 export default {
     name:'BoxServices',
     props: {
-        title: {
-            type: String,
-            default:'Služba'
-        },
-        icon:{
-            type: String,
-        },
+        service: Object,
         
     },
     methods:{
         onClick (){
-            this.$emit('button-clicked', this.title)
+            this.$emit('button-clicked', this.service)
              
         }
     }
@@ -33,5 +27,5 @@ export default {
 </script>
 
 <style>
-.icon {width: 270px;height: 270px;cursor: pointer;}
+.icon {cursor: pointer;}
 </style>
