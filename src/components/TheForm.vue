@@ -1,6 +1,15 @@
 <template>
-
-  <div id="form" class="col-lg-6 col-md-6 col-sm-12 col-xs-12 ha m1">
+  <div v-if="isSend" id="form" class="col-lg-6 col-md-6 col-sm-12 col-xs-12 ha m1">
+            <div class="col-lg-5 col-md-4 col-sm-5 col-xs-12 ha">
+                <i class="fa-solid fa-envelope-circle-check"></i>
+            </div>
+            <div class="col-lg-7 col-md-8 col-sm-7 col-xs-12 sec">
+                <h4>Děkujeme!</h4>
+                <p>Váš dotaz byl v pořádku odeslán a budu Vás brzy kontaktovat.</p>
+                <p><a style="color:#000" href="/">Odeslat další dotaz</a></p>
+            </div>
+  </div>  
+  <div v-if="!isSend" id="form" class="col-lg-6 col-md-6 col-sm-12 col-xs-12 ha m1">
       <div class="row">
           <div class="form"  >
               <h5>Nechte si nezávazně ověřit na co máte nárok</h5>
@@ -143,6 +152,7 @@ export default {
                 link: '/Zasady_ochrany_osobnich_udaju.pdf'
                 },
             errorMessages: '',
+            isSend: false,
         }
     },
     methods:{
@@ -231,6 +241,7 @@ export default {
 
                 if (data == "OK") {
                     this.errorMessages = 'Děkujeme, vše proběhlo v pořádku.';
+                    this.hideForm()
                 }
                 else if(data == "GDPR"){
                     this.errorMessages = 'Zaškrtněte prosím políčko "Souhlasím se Zásady..."';
@@ -241,6 +252,9 @@ export default {
             } catch (error) {
                 this.errorMessages = error;
             }
+        },
+        hideForm(){
+            this.isSend = true;
         }
     },
 }
