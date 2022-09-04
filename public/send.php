@@ -1,7 +1,7 @@
 <?php
-$my_email = '';
+$my_email = 'bajtalon.m@email.cz';
 
-$header = "From: web@dotacezelena.cz\r\n"; 
+$header = "From: michal@dotacezelena.cz\r\n"; 
 $header.= "Reply-To: ".$_POST["e-mail"]."\r\n";
 $header.= "MIME-Version: 1.0\r\n"; 
 $header.= "Content-Type: text/html; charset=utf-8\r\n";
@@ -39,10 +39,7 @@ if($_POST['e-mail'] != "" || $_POST['telefon'] !="") {
 
 			$message = $message.'<br>'.$key.': '.$value;
 	}
-	
 		
-	
-	
 	$message.='
 	</body>
 	</html>';
