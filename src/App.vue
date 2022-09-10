@@ -7,7 +7,7 @@
       </h3>
     </div>    
         <div class="row ">
-          <TheCalc/>
+          
           <TheForm/>
         </div>
   </section>
@@ -16,7 +16,7 @@
 
 <script>
 import TheHeader from '@/components/TheHeader.vue'
-import TheCalc from '@/components/TheCalc.vue'
+
 import TheForm from '@/components/TheForm.vue'
 import TheFooter from '@/components/TheFooter.vue'
 export default {
@@ -25,7 +25,7 @@ export default {
   components: {
     TheHeader,
     TheForm,
-    TheCalc,
+    
     TheFooter,
   },
 }

@@ -17,17 +17,20 @@ h5{font-size: 1.5em; margin-bottom: 32px;}
 h6{font-size: 1.5em;margin:1rem 0;font-weight: 100;}
 
 .m0{margin: 0 !important;}
-.m1{margin-top: 2rem;}
+.mt1{margin-top: 1rem;}
+.mb1{margin-bottom: 1rem;}
+.ml1{margin-left: 1rem;}
 a{text-decoration: none; color: #FFF;}
 select,input[type="checkbox"], input[type="text"] {background-color: white !important;;}
 .ha {display: flex;justify-content: center;}
 .va {display: flex;align-items: center;}
+.space-around {justify-content: space-around;}
 .w100 { width: 100%;}
 
 .header,section,.foot{ width: 100%;margin: 0px auto;}
 
 section{color: #6c757d;}
-section i {font-size: 10rem;line-height: 41px;}
+section i {font-size: 8.5em;line-height: 41px;}
 
 .switch {  margin: 10px;  position: relative;  display: inline-block;  width: 45px;  height: 26px;}
 .switch input {  opacity: 0;  width: 0;  height: 0;}
@@ -58,7 +61,7 @@ section i {font-size: 10rem;line-height: 41px;}
 @media only screen and (max-width: 47.5em) { /* 760 px default 16 px */
   .sec{padding: 7% !important;}
   .form{border: none !important;}
-  form{border: none;}
+  form{border: none; }
   section i {font-size: 7rem;line-height: 21px; padding: 2%;}
   .foto1{width: 37%; }
   .dark-bg{position: flex;}
