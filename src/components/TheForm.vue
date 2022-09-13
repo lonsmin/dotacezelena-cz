@@ -57,13 +57,15 @@
               </div>
             </div>
           </div>
-          <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 mt1 mb1 va space-around">
-            
-                <i class="fa-solid fa-calculator" @click="calc()"></i>
-            
-            
-                <h2 class="m0 ml1" @click="calc()">Dotační kalkulačka</h2>
-            
+          <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 mt1 mb1 va space-around pointer" @click="calc()">
+            <div class="flex-direction-row va flex-gap-2">
+              <i class="fa-solid fa-calculator" ></i>
+              <div class="flex-direction-column"> 
+                <h2 class="m0 ml1" @click="calc()">Dotační kalkulačka</h2> 
+                <p>V následujícím formuláři můžete předběžně zjistit přibližnou dotaci, na kterou máte nárok.</p>
+                
+              </div>
+            </div>
           </div>
           </div>
           <div class="input-group">

@@ -24,6 +24,20 @@ a{text-decoration: none; color: #FFF;}
 select,input[type="checkbox"], input[type="text"] {background-color: white !important;;}
 .ha {display: flex;justify-content: center;}
 .va {display: flex;align-items: center;}
+.flex-direction-column{
+  display: flex;
+  flex-direction: column;
+}
+.flex-direction-row{
+  display: flex;
+  flex-direction: row;
+}
+.flex-gap-2{
+  gap: 2em;
+}
+.pointer {
+  cursor: pointer;
+}
 .space-around {justify-content: space-around;}
 .w100 { width: 100%;}
 
