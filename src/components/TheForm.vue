@@ -81,11 +81,17 @@
                     <div class="input-group detailed">
                         <div id="firstDet" v-if="mainCheckbox">
                             <h2>Zvolte, co máte v plánu</h2>
-                            <TheReconstruction />
+
                             <TheMultiselect
                                 :services="services"
                                 @selected-services="(e) => (selectedServices = e)"
                             />
+                            <div v-for="service in services" :key="service.id">
+                                <div v-if="service.value">
+                                    <h6>{{ service.name }}</h6>
+                                    <TheReconstruction />
+                                </div>
+                            </div>
                             <!-- <MyCheckbox
                                 v-for="service in services"
                                 v-model="service.value"
